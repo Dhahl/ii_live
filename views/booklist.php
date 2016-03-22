@@ -200,14 +200,15 @@ foreach($_SESSION['events'] as $id=>$event)	{
 					</span>
 				</div>
 				<div class="col-md-1 col-sm-1 col-xs-12 ">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 0px">Categories</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 20px">Categories</a>
 						<ul class="dropdown-menu" style="text-align:left">
 							<?php  echo $catMenu;?>
 						</ul>
 				</div>
+				<!--
 				<div class="col-md-1 col-sm-1 col-xs-6 nav_forum" >
-				<a href="forum">Forum</a>
-				</div>
+				<a href="forum"></a>
+				</div>-->
 				<div class="col-md-1 col-sm-1 col-xs-12 nav_events">
 						<a href="#" class="dropdown-toggle"data-toggle="dropdown" style="padding-left: 0px">Events</a>
 						<ul class="dropdown-menu" style="text-align:left">
