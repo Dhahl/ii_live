@@ -12,6 +12,7 @@ $route['default_404'] = 'notfound';
 $route['default_offline'] = 'offline';
 /* user-defined routes */
 $route['home'] = 'booklist';
+$route['book'] = 'book';
 $route['login'] = 'login';
 $route['login/forgotpassword'] = 'login/forgotpassword';
 
@@ -30,6 +31,9 @@ $route['authors'] = 'authors';
 $route['categories'] = 'categories';
 $route['banner'] = 'banner';
 $route['utilities'] = 'utilities';
+
+$route['feed'] = 'feed';
+
 $route['development/login'] = 'login';
 $route['development/login/forgotpassword'] = 'login/forgotpassword';
 $route['development/publish'] = 'publish';

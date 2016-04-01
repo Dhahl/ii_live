@@ -369,7 +369,7 @@ a:hover
 }
 /* LE ** just apply some height and width to the wrapper. */
 .ii-image {
-
+ height:auto;
  max-height:auto;
  max-width:150px;
   overflow: visible;
@@ -647,7 +647,7 @@ border-radius:25px;
 .info_links  >  a:focus {
   color: #262626;
   text-decoration: none;
-  background-color: #f5f5f5;
+//  background-color: #f5f5f5;
 }
 .info_links  > .active > a,
 .info_links  > .active > a:hover,
@@ -757,7 +757,7 @@ border-radius:25px;
  		margin-left:25px;
  	}	
  	.nav_events {
- 		text-align:right;
+ 		margin-left:50px;
  	}	
  	.nav_about {
  		margin-left:10px;
@@ -1033,6 +1033,12 @@ border-radius:25px;
 		margin-left:-10px;
 		padding-left:22px; 
 	}
+	.ii-image {
+		height:auto;
+ 		max-height:auto;
+ 		max-width:150px;
+  		overflow: visible;
+	}
 }
 @media screen and (max-width: 991px)  {	/* 768 -  991 */
 	.primaryMenu{	
@@ -1080,7 +1086,6 @@ border-radius:25px;
 			padding:0px;
 			margin:0px;
 	}
-	
 	.carousel_image {
 		height:600px;	
 		background-color:black;
@@ -1124,6 +1129,12 @@ border-radius:25px;
 	.isbn13_label {
 		margin-left:-10px;
 		padding-left:22px; 
+	}
+	.ii-image {
+		height:auto;
+ 		max-height:auto;
+ 		max-width:150px;
+  		overflow: visible;
 	}
 }
 
@@ -1336,6 +1347,12 @@ border-radius:25px;
 		margin-left:0px; 
 		padding-left:0px;
 	}
+	.ii-image {
+		height:auto;
+ 		max-height:auto;
+ 		max-width:150px;
+  		overflow: visible;
+	}
 }
 
 @media screen and (max-width: 600px){
@@ -1369,7 +1386,6 @@ border-radius:25px;
     	position: absolute;
     	background: #f3be22;
 		}
-
 	.twitter_feed {
 	    bottom:10px;
     	top: 400px;
@@ -1393,7 +1409,6 @@ border-radius:25px;
    	/*	background-color:black; */
    		min-width:360px
 		}
-
 	.navbar-header {
 	    top:0px;
     	right:0px;
@@ -1406,7 +1421,12 @@ border-radius:25px;
 	.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
 		height:400px;	
 		background-color:black;
-		
+	}
+	.ii-image {
+		height:auto;
+ 		max-height:auto;
+ 		max-width:150px;
+  		overflow: visible;
 	}
 }
 @media screen and (max-width: 500px)  {
@@ -1432,6 +1452,12 @@ border-radius:25px;
 		padding-left:50px;
 		
 		width:272px;
+	}
+	.ii-image {
+		height:auto;
+ 		max-height:auto;
+ 		max-width:150px;
+  		overflow: visible;
 	}
 }
 @media screen and (max-width: 360px)  {	

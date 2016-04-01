@@ -200,14 +200,16 @@ foreach($_SESSION['events'] as $id=>$event)	{
 					</span>
 				</div>
 				<div class="col-md-1 col-sm-1 col-xs-12 ">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 0px">Categories</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left: 20px">Categories</a>
 						<ul class="dropdown-menu" style="text-align:left">
 							<?php  echo $catMenu;?>
 						</ul>
 				</div>
+				<!--
 				<div class="col-md-1 col-sm-1 col-xs-6 nav_forum" >
 				<a href="forum">Forum</a>
 				</div>
+				 -->
 				<div class="col-md-1 col-sm-1 col-xs-12 nav_events">
 						<a href="#" class="dropdown-toggle"data-toggle="dropdown" style="padding-left: 0px">Events</a>
 						<ul class="dropdown-menu" style="text-align:left">
@@ -755,7 +757,7 @@ function formatAuthors()	{
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;" data-toggle="modal"  	data-link-a		=	"l">L</a></li>
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;" data-toggle="modal"  	data-link-a		=	"m">M</a></li>
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;" data-toggle="modal"  	data-link-a		=	"n">N</a></li>
-				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;"  data-toggle="modal"  	data-link-a		=	"oÓ">O</a></li>
+				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;"  data-toggle="modal"  	data-link-a		=	"oï¿½">O</a></li>
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;"  data-toggle="modal"  	data-link-a		=	"p">P</a></li>
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;" data-toggle="modal"  	data-link-a		=	"q">Q</a></li>
 				<li style="padding:0px; z-index:1000"><a  href="#authors_modal" style="padding-top:0px; padding-bottom:0px;" data-toggle="modal"  	data-link-a		=	"r">R</a></li>
@@ -797,9 +799,10 @@ function formatBook($book)	{
     $bookFormatted .= '<div class="pull-left">';																						//	image
 	                   				  	
 	
-	$bookFormatted .= '				<a  href="#book_modal" data-toggle="modal" '.$modalLink.'>';
+	// $bookFormatted .= '				<a  href="#book_modal" data-toggle="modal" '.$modalLink.'>'; 	// 21/3/15
+	$bookFormatted 	.= '				<a  href="./book/&id='.$book->id.'/">';					// 21/3/15
 	$bookFormatted	.=	'					<div class="ii-image">
- 														<img src="'.$image.'" class="img-responsive" style=" background-color:#FFFFFF;">
+ 														<img src="'.$image.'" class="img-responsive ii-image" style=" background-color:#FFFFFF;">
  													</div>
  												</a>
 										</div>'
@@ -1568,7 +1571,6 @@ function selectAlpha2(ltr) {
 	    $('#authors_modal').modal();
 	}
 	$('#authors_modal').on('show.bs.modal', function(e) {
-		
 	    var letters		= $(e.relatedTarget).data('link-a');
 	    var authors 	= JSON.parse(<?php echo json_encode($authors); ?>);
 
@@ -1598,7 +1600,7 @@ function selectAlpha2(ltr) {
 				
 			 	}
 		 	else {
-			 //	console.log(letters + '  ' +authors[i][0]); working on ó 
+			 //	console.log(letters + '  ' +authors[i][0]); working on ï¿½ 
 			  for(k=0; k < letters.length; k++) {
 				letter = letters.substring(k,k+1);
 				//	  console.log(k + ' ' +escape(letter));
