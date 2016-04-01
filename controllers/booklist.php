@@ -9,7 +9,6 @@ class Booklist extends Controller {
         parent::__construct();
         $this->load->model('booklistmodel');
     }
-     
     public function index() {
 //echo $_SESSION['mode'];    	
 if(($_SESSION['mode']	=='editBook') 

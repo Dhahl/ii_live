@@ -6,7 +6,7 @@ define("APPLICATION_PATH", $sec_path);
 
 // modify these constants to fit your environment
 define("DB_SERVER", "localhost");
-define("DB_NAME", "irishinterest");
+define("DB_NAME", "dev_irishinterest");
 define ("DB_USER", "admin");
 define ("DB_PASSWORD", "");
 

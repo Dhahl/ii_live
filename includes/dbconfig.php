@@ -8,9 +8,9 @@
 class Dbconfig {
     public $driver = 'mysql';
     public $dbhost = 'localhost';
-    public $dbuser = 'lorcan';
+    public $dbuser = 'admin';
     public $dbpass = '';
-    public $dbname = 'irishinterest';
+    public $dbname = 'dev_irishinterest';
    // public $prefix = 'pfx_';
 	 public $prefix = '';
 }

@@ -122,22 +122,21 @@ class Publishmodel extends Model {
 	}
 	
 	function validInput()	{
-		$authfield ="auth";
-		$hiddenfield ="hiddenId";
+		$authfield = "auth";
+		$hiddenfield ="authorHdnId";
 		$gotAuthor = false;
 		$this->authorNames = array();
 		
 		foreach($_POST as $fieldName => $value)	{
-			if(substr($fieldName, 0, 4)	== $authfield) {
-				$number = substr($fieldName,4);
-				 
+			if(substr($fieldName, 0, 11)	== $hiddenfield) {
+				$number = substr($fieldName,11,1);
+				
 				if(!$value == '' ) {
 					$gotAuthor = true;
-					$this->authorNames[$_POST[$hiddenfield.$number]]	= $value;
+					$this->authorNames[$_POST[$hiddenfield.$number]]	= $_POST[$authfield.$number];
 				}
 			}
 		}
-		
 		$_SESSION['author'] = $this->authorNames;
 		$_SESSION['title']				=	$_POST['title'];
 //		$_SESSION['author']			=	$_POST['author'];

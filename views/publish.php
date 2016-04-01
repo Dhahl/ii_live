@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,62 +81,8 @@ $userMenu =	'
   			</ul>';
   }
 $bookAuthors	=	$_SESSION['author'];
-$authCount	= 0;
-$fldNameRt	= 'auth';			//	root
-$fldHdnRt		= 'hiddenId';	//	root
-$btnNameRt	=	'remove';
-/* to repropduice this :  
-             	<div id="field">
-  			 		<input id="auth1" name="auth1"  placeholder="click on the selector to choose an Author..." class="form-control input-md" type="text" data-items="8" readonly autocomplete="off"
- 			 				value="<?php echo $_SESSION['author'] ; ?>">
- 			 		<input id="hiddenId1" name="hiddenId1" type="hidden">
- 		           <div class="required-icon">
-        		        <div class="text">*</div>
-            		</div>
-                    <button id="b1" class="btn add-more" type="button">+</button>
-				</div>
- * */
- $part_0			=	'" class="btn btn-danger remove-me" type="button">-</button>';
- $part_1 		= '<div id="field"><input id="';  //authN
- $part_2 		= '" name="';							//authN
- $part_3 		= '"  placeholder="click on the selector to choose an Author..." 
- 							class="form-control input-md" 
- 							type="text" 
- 							data-items="8" 
- 							readonly 
- 							autocomplete="off"
- 			 				value="';					//	AuthN Name
-$part_4 			=	'"><input id="';				//	hiddenIdN
-$part_5 			=	'" name="';						//	hiddenIdN
-$part_5A		=	'" value="';						//	authorIID
-$part_6 			=	'" type="hidden">
-            				</div>
-                    		<button id="';						// Button name
-$part_7 			=	'" class="btn btn-danger remove-me" type="button">-</button>';
-$lastPart_7 	= 	'b1" class="btn add-more" title="add another Author" type="button">+</button>';
-$authHtml		=	'';
-if(count($bookAuthors) < 2)  {
-	$authHtml = '<button id="'.$lastPart_7;
-}
-else {
-	$authHtml = '<button id="remove1'. $part_7;
-}
-foreach($bookAuthors as $id => $name)	{
-	$authCount++;
-	if($authCount == 1) { 
-		$auth1Name	= $name;
-		$auth1Id		= $id;   
-	}
-	if($authCount > 1)	{ 
-		$fldName		=	$fldNameRt . $authCount;
-		$hdnName 	= 	$fldHdnRt	.	$authCount;
-		$btnName		= $btnNameRt . ($authCount);
-		$authHtml		.=	$part_1.$fldName.$part_2.$fldName.$part_3.$name.$part_4.$hdnName.$part_5.$hdnName.$part_5A.$id.$part_6;
-		if($authCount == count($bookAuthors)) $authHtml.=$lastPart_7;
-		else	$authHtml 	.= $btnName.$part_7;
-		$authorIDs[] 	=	$id;
-	}
-}
+$authCount	= count($bookAuthors);0;
+
 $authors		= $_SESSION['authors'];		// **** loaded by booklist model: Id => Name
 /*$authorIDs = explode(',', $_SESSION['authorid']);
 foreach($authorIDs as $id) {
@@ -154,8 +101,7 @@ foreach($authors as $idx=>$author) {
 //foreach($authors as $author) { echo $author[0].$author[1].'<br>';}
 $authors	= json_encode($authors);
 //echo $authors;
-$bookAuthorIDs	=	json_encode(explode(',',$_SESSION['authorid']));
-
+//die;
 $link_A=	 formatAuthors();
 
 $titleErr	=	'';
@@ -384,23 +330,16 @@ function pager_div()	{
 <!-- Author -->	
 <div class="form-group <?php echo $authorErr ; ?>" style="padding-right:25px">
   <label class="col-md-2 col-sm-2 col-xs-12 control-label" for="author">Author(s)</label>  
-  <div class="col-md-9 col-sm-9 col-xs-10">
+  <div class="col-md-10 col-sm-10 col-xs-10">
   <div class="required-field-block">
          <div class="control-group " id="fields">
             <div class="controls" id="profs">
             	 <div id="field">
-  			 		<input id="auth1" name="auth1"  placeholder="click on the selector to choose an Author..." class="form-control input-md" type="text" data-items="8" readonly autocomplete="off"
- 			 				value="<?php echo $auth1Name ; ?>">
- 			 		<input id="hiddenId1" name="hiddenId1" type="hidden" value="<?php echo $auth1Id; ?>">
- 		           <div class="required-icon">
-        		        <div class="text">*</div>
-            		</div>
-                    <!-- button id="b1" class="btn add-more" type="button">+</button> -->
+  			 		<div id="author_position_start"></div>
+  			 		<div id="author_position_end"></div>
 				</div> 
-	            <?php echo $authHtml;?> 
 		</div>
 		</div>
-  </div>
   
   <!--  Dynamic Form Fields (Bootsnip origin) -->
   		<input type="hidden" name="count" value="1" />
@@ -409,13 +348,9 @@ function pager_div()	{
  <!-- input type="hidden" id="authorid" name="authorid" value="<?php //echo $_SESSION['authorid'];?>"> -->
  
  <span class="help-inline"><?php echo $authorMsg; ?></span>
-  </div>
-  <div class="col-md-1" style="padding:0px; padding-top:5px">
-  <input type="button" value="..." class="btn btn-xs" style="display:inline; " title="Authors" onClick="showAlpha2();">
-  <!-- input type="button" value="+"  class="btn btn-xs" style="display:inline" title="multiple authors" onClick="multipleAuthors();">  -->
-  	
-  </div>
- <div class="search_container">
+    </div>
+</div>
+ <div class="alpha2_container">
 		<div id="alpha2" class="hidden col-md-3 col-xs-8 col-sm-4  alpha2_positioner" style="border-radius:25px;">
 			<form role="form" class="form-horizontal">
 				<div class="alert dismiss well well-sm" style="border-radius: 25px; margin-top:20px;">
@@ -498,7 +433,7 @@ $(function(){
 			  });
 	});
 </script>
-<!--  New Date --->
+<!--  New Date -->
 <div class="row" style="padding-bottom:15px;">
 <div class="col-md-8 col-sm-8 col-xs-7" style="padding:0px; padding-bottom:20px; margin:0px;">
 <div class="form-group <?php echo $publishedErr ; ?>"> 
@@ -716,7 +651,7 @@ value="<?php echo $_SESSION['linkurl'] ; ?>">
   <?php
   if($_SESSION['mode'] =='editBook')	{	
   	$image	=	"../upload/".$_SESSION['image']; ?>
-	<div class="col-md-12" style="padding:0";>
+	<div class="col-md-12" style="padding:0">
 		<img src="<?php echo $image;?> " class="img-responsive" style="max-height:100px; width:auto; background-color:#FFFFFF" >
 	</div> 
 <?php  }  ?>                  
@@ -837,7 +772,7 @@ die;
   <h4 class="text-center">My Books</h4>
 
         <div class="" id="property-listings">
-  			<div class="bodycontainer scrollable style="background-color:#e8e8e8"">
+  			<div class="bodycontainer scrollable" style="background-color:#e8e8e8">
  
 <?php 
    	
@@ -856,93 +791,30 @@ die;
  		else {
  			$vendorLink	=	$book->vendor;;
  		}
- 		//var_dump($image);
- 		//die;
- 		//$onClick	=  `onClick="$('form').submit();"`;
-/*			echo '
-			
-							
-                <div class="col-md-12"> 
-
-                    <!-- Begin Listing -->
-                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                        <div class="media">
-                           <div class="pull-left">
- 									
-						<img src="'.$image.'" class="img-responsive" width="50" height="80"></div>
-						
-                        <div class="clearfix visible-sm"></div>
-
-                        <div class="media-body fnt-smaller">
-						
-					
-                        	<class="media-heading"><small class="pull-right">'.$publisherLink.'</small>
-							<small><ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-        	                  <li>'.$book->published.'</li>
-    	                      <li style="list-style: none">|</li>
-	                          <li>'.$book->genre.'</li>
-                        	  <li style="list-style: none">|</li>
-	                     	  <li>'.$book->area.'</li>
-	                     	  <li style="list-style: none">|</li>
-	                     	  <li>'.$book->isbn.'</li></ul></small>
-                          	<span style="font-size: 14px;"><b><i>'.$book->title.'</i></b></span>
-                        	  <p class="hidden-xs">						
-							'.$book->synopsis.'. <a href='.$book->linkurl.'>'.$book->linktext.'</a></p>
-							<div class="col-md-6"><span class="fnt-smaller fnt-lighter fnt-arial">Author: <b>'.$book->author.'</b></span></div>
-							<div class="col-md-5"><span class="fnt-smaller fnt-lighter fnt-arial"><b>'.$vendorLink.'</b></span></div>
-							<span class="pull-right  fnt-arial" >
-		';							
-*/
-			echo '
+		?>
                 <div class="col-md-12"> 
                     <!-- Begin Listing -->
                     <div class="brdr bgc-fff  box-shad btm-mrg-2 property-listing" style="padding-right:10px">
                         <div class="media">
-                           <div class="pull-left"><a href="../publish/&edit?id='.$book->id.'">
-						<img src="'.$image.'" class="img-responsive"  style="height:50px; width:auto; background-color:#FFFFFF"></a></div>
+                           <div class="pull-left"><a href="../publish/&edit?id=<?php echo $book->id;?>">
+						<img src="<?php echo $image;?>" class="img-responsive"  style="height:50px; width:auto; background-color:#FFFFFF"></a></div>
                         <div class="clearfix visible-sm"></div>
                         <div class="media-body fnt-smaller">
-                        	<class="media-heading"><small class="pull-right">'.$book->publisher.'</small>
-							<small><ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-        	                  <li>'.$book->published.'</li>
-    	                      <li style="list-style: none"></li></ul>
-                          	<span style="font-size: 14px;">'.$book->title.'</span>
+                        	<div class="media-heading">
+                        	<small class="pull-right"><?php echo $book->publisher;?></small>
+							<small>
+								<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+        	                  		<li><?php echo $book->published;?></li>
+    	                      		<li style="list-style: none"></li>
+    	                      	</ul>
+                          		<span style="font-size: 14px;"><?php echo $book->title;?></span>
                         	  				
-							<div class="col-md-12"><span class="fnt-arial"><b>'.$book->author.'</b></span></div>
+								<div class="col-md-12"><span class="fnt-arial"><b><?php echo $book->author;?></b></span></div>
 							
-							</small><span class="pull-right  fnt-arial" >
-		';							
- 		
-//	?>
- <!-- DELETE BUTTON	
-
-    <button type="button" class="btn btn-default btn-sm" onClick="triggerModal('<?php echo $book->id ; ?>')">
-	<span style="font-size: 10px; text-shadow: black 0px 1px 1px; "class="glyphicon glyphicon-remove"></span>
-    </button> -->
-
-    <?php 
-    echo '  
-    <div id="largeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            	<div class="modal-header" id="myModalLabel">
-                	<button type="button" class="close" data-dismiss="modal" >x</button>
-                    <h4 class="modal-title">Delete </h4>
-                </div>
-  
-        		<form method="post" id="action_submit" action="./?delete">     
-              		<div class="modal-body">'.$modalBody.'
-                     	<input type="hidden" name="titleId" id="the_id" />
-                	</div>
-                	<div class="modal-footer">
-                    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>';?>
-                    	<button type="submit" class="btn btn-success btn-primary" ><?php echo 'OK' ;?></button>
-                	</div>
-				</form>
+							</small>
+						</div>
+							<span class="pull-right  fnt-arial" >
 <?php echo '
-           </div>
-        </div>
-    </div>
 							
 <!-- EDIT LINK	-->							
 <a href="../publish/&edit?id='.$book->id.'">
@@ -950,7 +822,8 @@ die;
 
 
 <!--Book Id - hidden -->
-  <input id="bookId" name="bookId" class="hidden" type="text" value=">'.$book->id.'"</input> 
+  <input id="bookId" name="bookId" class="hidden" type="text" value="'.$book->id.'"/> 
+			</span>
 						</div>
 						</div>
 					</div>
@@ -975,7 +848,7 @@ echo '<div class="col-md-12 col-sm-12 col-xs-12" id="footer">
   ?>
 </div></div>
 </div>
-</div>
+
 
 <?php 
 function displayMessage()	{
@@ -1055,13 +928,12 @@ function formatAuthors()	{
 if(typeof authors== 'undefined') {
     var authors 	= JSON.parse(<?php echo json_encode($authors); ?>);
     //console.log(<?php //foreach($authors as $author) { echo 'abc'.$author[0]. $author[1] .'<br>'; } ?>);
-}
-if(typeof bookAuthorIDs== 'undefined') {
-	var bookAuthorIDs 	=	JSON.parse(<?php echo json_encode($bookAuthorIDs);?>); // authors currently assigned to this book
+    //console.log('Authors = ' + authors);
 }
 var currentAuth =<?php echo $authCount;?>;
 if(currentAuth == 0) currentAuth = 1;
 var nextAuth = currentAuth+1;
+console.log(currentAuth);
 
 //console.log('GLOBALS - Next = ' + next);
 $(document).on('click', '.panel-heading span.clickable', function(e){
@@ -1077,6 +949,104 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 	}
 })
 </script>
+<script>
+ var miscFuncs={};
+ function addAuthor(id,key,content) {
+		html =  '<div class="col-md-11 col-sm-11" style="padding:0px;">' + 
+		' <input id="auth' + id + '"' +
+		'	name="auth' + id + '"' +
+		' 	placeholder="click on the selector to choose an Author..."' +
+		' 	class="form-control input-md"' +
+		' 	type="text"'+
+		' 	data-items="8"'+
+		' 	readonly' +
+		' 	autocomplete="off"' +
+ 		' 	value="'+ content + '"></div>' +
+ 		' <input id="authorHdnId' + id + '"' +
+		' 	name="authorHdnId' + id + '"' +
+		' 	type="hidden"'+
+		' 	value="'+  key + '">' +
+		' <div class="col-md-1 col-sm-1" style="padding:0px;"><button id="remove' + id + '"' +
+	    ' 	class="btn btn-danger remove-me"' + 
+	    '	type="button" >-</button></div>';
+	    return(html);
+ }
+</script>	
+<script>	// 	JS Setup Authors 
+ html = '';
+<?php
+ $i = 0;
+ foreach($bookAuthors as $authorID=>$authorName) { 
+	$i++;?>
+	i = <?php echo $i;?>;
+	authorID = <?php echo  $authorID;?>;
+	authorName = <?php echo  json_encode($authorName);?>;
+	html = html + addAuthor( i,authorID ,authorName);
+<?php	}	?>
+	html = html + '<button id="b1" class="btn add-more" title="add an Author" type="button">Click here to add an Author</button></div>'
+		$('#author_position_start').after(html);
+</script>
+<script> // JS Document Ready
+   $(document).ready(function(){
+	    miscFuncs.deleteAuthor = function(e,fieldNum) {
+	            e.preventDefault();
+	            var fieldID = "#auth" + fieldNum;
+	            $(fieldID).remove();
+	            $("#remove" + fieldNum).remove();
+	            $("#authorHdnId" + fieldNum).remove();
+	            console.log("field deleted  = " +fieldID);
+	        };
+		miscFuncs.showNewAuthorBtn = function() {
+	            console.log("SHOW2");
+		        
+			    var addto 		= "#authorHdnId" + currentAuth;
+		       	var addHidden 	= "#auth" + nextAuth;
+		       	var addRemove	= "#remove" + currentAuth;
+				var newInput = addAuthor(nextAuth,nextAuth,'');
+		        $('#author_position_end').before(newInput);
+		        
+		        $("#remove" + nextAuth).attr('data-source',$(addRemove).attr('data-source'));
+		        $("#count").val(nextAuth);
+		        hideNewAuthorBtn()
+		        showAlpha2();  
+			    nextAuth++;
+			    currentAuth++ 
+				$('.remove-me').click(function(e){
+				   	var fieldNum = parseInt(this.id.substr(this.id.lastIndexOf("e")+1)) ;
+				   	miscFuncs.deleteAuthor(e,fieldNum)
+			    });
+	        };
+	});
+</script>
+<script> // JS  add Author field Event 
+	    $(".add-more").click(function(e){
+	        e.preventDefault();
+		    var addto 		= "#authorHdnId" + currentAuth;
+	       	var addHidden 	= "#auth" + nextAuth;
+	       	var addRemove	= "#remove" + currentAuth;
+			var newInput = addAuthor(nextAuth,nextAuth,'');
+	        $('#author_position_end').before(newInput);
+	        
+	        $("#remove" + nextAuth).attr('data-source',$(addRemove).attr('data-source'));
+	        $("#count").val(nextAuth);
+	        hideNewAuthorBtn()
+	        showAlpha2();  
+	        
+		    nextAuth++;
+		    currentAuth++ 
+			$('.remove-me').click(function(e){
+			   	var fieldNum = parseInt(this.id.substr(this.id.lastIndexOf("e")+1)) ;
+			   	miscFuncs.deleteAuthor(e,fieldNum)
+		    });
+ 	    });
+ </script>
+ <script>	// Remove Author field Event
+	    $('.remove-me').click(function(e){
+	    	var fieldNum = parseInt(this.id.substr(this.id.lastIndexOf("e")+1)) ;
+	    	miscFuncs.deleteAuthor(e,fieldNum)
+        });
+</script>
+
 <script type="text/javascript">
 function triggerModal(avalue) {
  
@@ -1136,9 +1106,10 @@ function changeContent(id, row, cell, content) {
 	    x[cell].innerHTML = content;
 }
 function changeAuthor(name, id) {
+	console.log(currentAuth);
 	fieldNum = currentAuth;
 	if(fieldNum ==0) fieldNum = 1;
-	var idString = $("#hiddenId" + fieldNum).val;
+	var idString = $("#authorHdnId" + fieldNum).val;
 	var nameString = $("#auth" + fieldNum).val;
 	// change name received from "lastname, firstname" to "firstname lastname"
 	var a = name.indexOf(',');
@@ -1157,12 +1128,23 @@ function changeAuthor(name, id) {
 	}
 	
 	$("#auth" +(fieldNum)).val(firstname + ' ' + lastname) ;
-	$("#hiddenId" + (fieldNum)).val(id); 
+	$("#authorHdnId" + (fieldNum)).val(id);
+	showNewAuthorBtn(); 
 }
 function showAlphabet() {
 
     $('#showAlphabet').modal();
  
+}
+function hideNewAuthorBtn() {
+	$("#b1").remove();
+}
+function showNewAuthorBtn(){
+	$("#author_position_end").before('<button id="b1" class="btn add-more" title="add an Author" type="button">Click here to add an Author</button></div>');
+	console.log("SHOW");
+	$('.add-more').click(function(e){
+	   	miscFuncs.showNewAuthorBtn();
+    });
 }
 function showAlpha2() {
 	  $("#alpha2").hide().removeClass('hidden');
@@ -1184,7 +1166,7 @@ $('#authors_modal').on('hide.bs.modal', function () {
 	var selectedID				= 	0;
 
 	authName =  "auth" + nextAuth;																// initialize name & hidden field 
-	hiddenId	='hiddenId' + nextAuth
+	hiddenId	='authorHdnId' + nextAuth
 	$(authName).val 	= '';
 	$(hiddenId).val	 	= '';
 	
@@ -1202,14 +1184,9 @@ $('#authors_modal').on('hide.bs.modal', function () {
 	$('#authors_modal').on('show.bs.modal', function(e) {
 	
 	    var letter		= $(e.relatedTarget).data('link-a');
-	    //var authors 	= JSON.parse(<?php echo json_encode($authors); ?>);
-//console.log(authors);
-//console.log(letter);
 	    var table = document.getElementById("authorTable");
 	    var rowCount = table.rows.length;
-	  //  console.log(rowCount);
 	    for (var x=rowCount-1; x>0; x--) {
-	//	    console.log('Deleting Row: ' + x);
 	       table.deleteRow(x);
 	    }
 	    rowCount = 1;
@@ -1221,14 +1198,8 @@ $('#authors_modal').on('hide.bs.modal', function () {
 	    changeContent('authorTable',0,0,selection); 
 	    var j = 1;
 	    for (i = 0; i < authors.length; i++) {
-		 //   console.log(authors[i].indexOf(letter) );
-		 	//var author = '<a href="?author=' + authors[i][1] + '">' + authors[i][0] + '</a>';
-		 	//var author = '<input type ="button" class="btn" value="' + authors[i][0] + '" onClick="changeAuthor(`' + authors[i][0] + '`,' + authors[i][1] + ');">' ;
-		 	//var author ='<span><input type="checkbox" value="'+authors[i][1]+'" onClick="changeAuthor(`' + authors[i][0] + '`,' + authors[i][1] + ');">'+authors[i][0]+'</span>';
-		 	// checkboxes == var author ='<div class="checkbox" style="margin-top:1px;margin-bottom:1px;color:#526629;  font-size: 12px ;"><input type="checkbox" name="authornames[]" id="authornames[]" value="'+authors[i][1]+'" '+authors[i][2]+'>'+authors[i][0]+'</div>';
 			var author  = '<div class="radio" style="margin-top:1px;margin-bottom:1px;color:#526629;  font-size: 12px ;">';
 			author		= author + '<label><input type="radio" name="authorGroup"  value="'+authors[i][1]+'">'+authors[i][0]+'</label></div>';
-			//console.log(author);
 		 	if(letter == 'all')	{
 			    row = authorTable.insertRow(j);
 			    row.insertCell(0);
@@ -1237,8 +1208,6 @@ $('#authors_modal').on('hide.bs.modal', function () {
 				
 			 	}
 		 	else {
-			 	//console.log(letter.toUpperCase());
-			   // console.log(i + ' = '+ authors[i]);
 			 	if ((authors[i][0].indexOf(letter) ==  0 )  || (authors[i][0].indexOf(letter.toUpperCase()) == 0)){
 			    row = authorTable.insertRow(j);
 			    row.insertCell(0);
@@ -1252,56 +1221,6 @@ $('#authors_modal').on('hide.bs.modal', function () {
 		console.log(authId);
 		console.log(name);
 	}
-// Dynamic Form Fields / Bootsnip ..     	
-   $(document).ready(function(){
-	   // var next = 1; moved to globals
-	    console.log('init - nextAuth =  '+nextAuth);
-	    console.log('init - CurrentAuth = ' +currentAuth);
-	    
-	    $(".add-more").click(function(e){
-	        e.preventDefault();
-		    var addto 			= "#auth" + currentAuth;
-	       	var addHidden 	= "#auth" + currentAuth;
-	       	var addRemove	= "#auth" + currentAuth;
-	        
-	        //next = next + 1;
-	        var newIn = '<input autocomplete="off" class="input form-control" id="auth' + (nextAuth) + '" name="auth' + nextAuth + '" readonly type="text">';
-	        var newInput = $(newIn);
-	        
-	        var newHdnId = '<input id="hiddenId' + (nextAuth) + '" name="hiddenId' + (nextAuth) + '" type="hidden">';
-	        var newHiddenId = $(newHdnId);
-        
-	        var removeBtn = '<button id="remove' + (currentAuth) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-	        var removeButton = $(removeBtn);
-	        console.log("addto = " +addto);
-	        $(addto).after(newInput);
-	        $(addRemove).after(removeButton);
-	        $(addHidden).after(newHiddenId);
-	        
-	        $("#auth" + nextAuth).attr('data-source',$(addto).attr('data-source'));
-	        $("#auth" + nextAuth).attr('data-source',$(addHidden).attr('data-source'));
-	        //console.log($(addto).attr('data-source'));
-	        $("#count").val(nextAuth);  
-	        
-	            $('.remove-me').click(function(e){
-	                e.preventDefault();
-	                var fieldNum = parseInt(this.id.substr(this.id.lastIndexOf("e")+1)) ;
-	                console.log("fieldNum = " +fieldNum);
-	                var fieldID = "#auth" + fieldNum;
-	                $(this).remove();
-	                $(fieldID).remove();
-	                $("#hiddenId" + fieldNum).remove();
-	            });
-	            console.log('addmore - nextAuth = ' + nextAuth);
-		        nextAuth++;
-		        currentAuth++ 
-	            
-	    });
-	    
-
-	    
-	});
-
  	</script>
 	</body>
 </html>
