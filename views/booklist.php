@@ -208,7 +208,7 @@ foreach($_SESSION['events'] as $id=>$event)	{
 				<!--
 				<div class="col-md-1 col-sm-1 col-xs-6 nav_forum" >
 				<a href="forum">Forum</a>
-				</div>
+				</div> 
 				 -->
 				<div class="col-md-1 col-sm-1 col-xs-12 nav_events">
 						<a href="#" class="dropdown-toggle"data-toggle="dropdown" style="padding-left: 0px">Events</a>
